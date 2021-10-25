@@ -11,9 +11,14 @@ export default function Button(props: buttonProps) {
 
   const [counter, setCounter] = useState(0)
 
-  function gerarSenha() {
+  function contador() {
     setCounter(counter + 1);
     console.log(counter)
+  }
+
+
+  function gerarSenha() {
+    contador()
   }
   return (
 
