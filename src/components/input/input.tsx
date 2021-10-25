@@ -1,3 +1,4 @@
+
 import './input.css'
 
 type inputProps = {
@@ -9,7 +10,7 @@ type inputProps = {
 export default function Input(props: inputProps) {
   return (
     <div>
-      <form>
+      <form id="formSenha">
         <label
           htmlFor={props.id}>
           {props.label}
@@ -19,7 +20,6 @@ export default function Input(props: inputProps) {
           placeholder={props.text}
           id={props.id}
         />
-
       </form>
     </div>
 

@@ -1,7 +1,7 @@
 import './App.css';
 import Logo from "../assets/logomarca.png"
 import Input from '../components/input/input'
-import Button from '../components/button/button';
+import Button from '../components/button/button'
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
       />
       <p>23 de Outubro de 2021</p>
 
-      <Button />
+      <Button idForm="formSenha" />
     </div>
   );
 }
