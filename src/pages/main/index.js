@@ -6,7 +6,7 @@ import Input from '../../components/input';
 import Moment from 'react-moment';
 import 'moment/locale/pt-br'
 
-import useState from 'react'
+import { useState } from 'react'
 
 function App() {
   const senhaInicial = {
@@ -38,7 +38,7 @@ function App() {
 
   function gerarSenha() {
     contador()
-    senhaArmazenar()
+    senhaArmazenar(senhaInicial.id, senha)
   }
 
   return (
@@ -59,7 +59,7 @@ function App() {
         onChange={(e) => setSenha(e.target.value)}
       />
       <p><Moment format="DD MMM YYYY" locale="" /></p>
-      <Button name="GERAR SENHA" onClick={() => gerarSenha(senhaInicial.id, senha)} />
+      <Button name="GERAR SENHA" onClick={() => gerarSenha()} />
     </WrapperDiv>
   );
 }
