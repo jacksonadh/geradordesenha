@@ -1,20 +1,13 @@
 
 import { useState } from 'react'
-import './input.css'
+import WrapperDiv from './style.js'
 
-type inputProps = {
-  label: string;
-  id: string;
-  text: string;
-  value?: string;
-}
-
-export default function Input(props: inputProps) {
+export default function Input(props) {
 
   const [text, setText] = useState("")
 
   return (
-    <div>
+    <WrapperDiv>
       <form id="formSenha">
         <label
           htmlFor={props.id}>
@@ -28,7 +21,7 @@ export default function Input(props: inputProps) {
           onChange={(e) => setText(e.target.value)}
         />
       </form>
-    </div>
+    </WrapperDiv>
 
   );
 }

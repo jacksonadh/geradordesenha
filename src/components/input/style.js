@@ -1,11 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@700&family=Source+Sans+Pro:wght@600&display=swap');
+import styled from "styled-components";
 
-* {
-  margin: 0;
-  font-family: 'Sora', sans-serif;
-  box-sizing: border-box;
-}
-
+const WrapperDiv = styled.div`
 label {
   display: inline-grid;
   display: -ms-inline-grid;
@@ -42,6 +37,31 @@ input {
   margin-bottom: 20px;
 }
 
+input:hover {
+  width: 247px;
+  padding: 18px 0;
+  text-align: center;
+  background-color: #1f446e;
+  color: #fff;
+  border-style: none;
+  border-radius: 10px;
+  font-family: Sora;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 23px;
+  letter-spacing: 0em;
+  margin-bottom: 20px;
+}
+
+input:hover::placeholder {
+  color: #fff;
+}
+
 input::placeholder {
   color: #000;
 }
+`;
+
+export default WrapperDiv;
