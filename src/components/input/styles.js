@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+import { Form as Unform } from '@unform/web'
 
-const WrapperDiv = styled.div`
-label {
+export const Form = styled(Unform)`
+  label {
   display: inline-grid;
   display: -ms-inline-grid;
   display: -moz-inline-box;
@@ -62,6 +63,35 @@ input:hover::placeholder {
 input::placeholder {
   color: #000;
 }
-`;
 
-export default WrapperDiv;
+input[type=number] {
+      width: 60px;
+      margin: auto;
+      padding: 18px 0;
+      text-align: center;
+      background-color: #C4C4C4;
+      color: #000;
+      border-style: none;
+      border-radius: 10px;
+      font-family: Sora;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 23px;
+      letter-spacing: 0em;
+      margin-bottom: 20px;
+      /* Firefox */
+      -moz-appearance: textfield;
+      }
+
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .inputId {
+        display: none;
+      }
+`

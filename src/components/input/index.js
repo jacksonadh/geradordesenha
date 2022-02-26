@@ -1,27 +1,42 @@
+import React, { useRef, useEffect } from 'react'
+import { useField } from '@unform/core'
+import { Form } from './styles'
 
-import { useState } from 'react'
-import WrapperDiv from './style.js'
+export default function MyForm({ name, label, ...rest }) {
 
-export default function Input(props) {
+  const inputRef = useRef(null)
+  const { fieldName, defaultValue, registerField, error } = useField(name)
 
-  const [text, setText] = useState("")
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputRef,
+      getValue: ref => {
+        return ref.current.value
+      },
+      setValue: (ref, value) => {
+        ref.current.value = value
+      },
+      clearValue: ref => {
+        ref.current.value = ''
+      },
+    })
+  }, [fieldName, registerField])
 
+  const formRef = useRef()
+  const handleFormSubmit = senha => {
+    console.log(senha)
+  }
   return (
-    <WrapperDiv>
-      <form id="formSenha">
-        <label
-          htmlFor={props.id}>
-          {props.label}
-        </label>
-        <input
-          type="text"
-          placeholder={props.text}
-          id={props.id}
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-      </form>
-    </WrapperDiv>
-
-  );
+    <Form ref={formRef} onSubmit={handleFormSubmit}>
+      <label htmlFor={fieldName}>{label}</label>
+      <input
+        id={fieldName}
+        ref={inputRef}
+        defaultValue={defaultValue}
+        {...rest}
+      />
+      {error && <span className="error">{error}</span>}
+    </Form>
+  )
 }
