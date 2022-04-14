@@ -42,12 +42,12 @@ function App() {
     })
   }
 
-  function atualizarSenha(){
+  /*function atualizarSenha(){
     const senhaToUpdate = senhasGerada.find
     ApiServices.updateById(id, senha) => {
       ...senhaToUpdate,
     }
-  }
+  }*/
 
   function contador() {
     setCounter(counter + 1)
