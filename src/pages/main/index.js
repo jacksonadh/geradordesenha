@@ -16,38 +16,73 @@ function App() {
   const [counter, setCounter] = useState(0);
   const [medico, setMedico] = useState("");
   const [especialidade, setEspecialidade] = useState("");
-  const senhaGerada = [];
+  const [senhaGerada, setSenhaGerada] = useState([]);
+
   let idSenha = medico + especialidade;
 
-  const [senhasGerada, setSenhasGerada] = useState({
-    medico: "",
-    especialidade: "",
-    senha: 0,
-    idSenha: ""
-  })
+  useEffect(() => {
+    setSenhaGerada(prev => [...prev, counter])
+  }, [counter])
 
   useEffect(() => {
     ApiServices.getAll()
       .then((result) => {
-        console.log(result);
+        result.forEach(function (valorAtual, index) {
+
+          if (idSenha === valorAtual.idSenha) {
+            var senhaToUpdate = index + 1
+            ApiServices.updateById(senhaToUpdate, setSenhaGerada(prev => [...prev, counter]))
+            console.log("Este é o valor do index", senhaToUpdate)
+          } else {
+            ApiServices.create({
+              medico: medico,
+              especialidade: especialidade,
+              senha: senhaGerada.length,
+              idSenha: idSenha
+            })
+          }
+        }
+
+
+        )
+        /* for (var prop in result) {
+            var senhaToUpdate = result[prop].toString()
+           
+           
+            console.log(senhaToUpdate.indexOf(idSenha))
+          }
+          /*if (senhaToUpdate === 0) {
+            ApiServices.updateById(senhaToUpdate, setSenhaGerada(prev => [...prev, counter]))
+          } else {
+            gerarSenha()
+          }*/
+        //console.log("senhaToUpdate: ", senhaToUpdate);
+
       });
+  }, [counter]);
+  /*
+  useEffect(() => {
+  ApiServices.getAll()
+    .then((result) => {
+      const senhaToUpdate = result.indexOf(idSenha)
+      console.log(senhaToUpdate);
+    });
   }, []);
 
   function gerarSenha() {
     ApiServices.create({
       medico: medico,
       especialidade: especialidade,
-      senha: senhaGerada.push(counter),
+      senha: senhaGerada.length,
       idSenha: idSenha
     })
   }
 
-  /*function atualizarSenha(){
-    const senhaToUpdate = senhasGerada.find
-    ApiServices.updateById(id, senha) => {
-      ...senhaToUpdate,
-    }
-  }*/
+  //console.log(ApiServices)
+  /* function atualizarSenha() {
+     ApiServices.updateById(senhaToUpdate, setSenhaGerada(prev => [...prev, counter]))
+   }
+  */
 
   function contador() {
     setCounter(counter + 1)
@@ -55,7 +90,7 @@ function App() {
 
   function handleClick() {
     contador()
-    gerarSenha()
+    /*gerarSenha()*/
   }
 
   function handleFormSubmit(senha) {
